@@ -40,47 +40,9 @@ public class PostController {
 
         JSONObject json = new JSONObject();
 
-        List<String> stringList = userRepository.getAllUserNames();
-        String[] usernamesArray = stringList.toArray(new String[stringList.size()]);
-        List<String> categoryList = new LinkedList<>(Arrays.asList("Technology", "Art", "Lifestyle", "Science", "Fashion"));
+        Random random  = new Random();
+
         
-        String[] postsArray = {"New discoveries in quantum mechanics.", "The impact of artificial intelligence on healthcare.",
-                "Exploring the mysteries of the universe.", "Advancements in genetic engineering.", "Climate change and its effects on biodiversity.",
-                "Latest trends in streetwear fashion.",
-                "Tips for building a sustainable wardrobe.",
-                "Iconic fashion moments in history.",
-                "DIY fashion projects for beginners.",
-                "Interview with a fashion designer.",
-                "Review of the latest smartphone.",
-                "Blockchain technology and its applications.",
-                "Cybersecurity best practices for businesses.",
-                "The future of augmented reality.",
-                "Interview with a tech entrepreneur.",
-                "Analyzing the works of Picasso.",
-                "Exploring different art movements.",
-                "Tips for starting an art collection.",
-                "Art therapy and mental health.",
-                "Interview with a contemporary artist.",
-                "Healthy eating habits for a balanced lifestyle.",
-                "Travel destinations off the beaten path.",
-                "Mindfulness techniques for stress relief.",
-                "Parenting tips for new parents.",
-                "Interview with a wellness coach.",
-                "The intersection of art and technology.",
-                "Fashion-forward cities around the world.",
-                "Innovations in sustainable living.",
-                "Science fiction book recommendations.",
-                "DIY home decor ideas."
-        };
-
-        LocalDateTime time = LocalDateTime.now().plusDays(15);
-
-        // User user1 = userRepository.findByUserName("charlie_davis");
-        User user2 = userRepository.findByUserName("diana_evans");
-
-        Post postObj = new Post("DIY home decor ideas.", time, new LinkedList<>(Arrays.asList(user2)));
-
-        postRepository.save(postObj);
 
         return new ResponseEntity<>(json.toString(), HttpStatus.OK);
     }

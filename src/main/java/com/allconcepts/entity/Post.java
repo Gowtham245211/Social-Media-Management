@@ -26,11 +26,9 @@ public class Post {
         this.usersList = usersList;
     }
 
-    public Post(String content, LocalDateTime updateTime, List<User> usersList, List<Categories> categoryList) {
+    public Post(String content, LocalDateTime updateTime) {
         this.content = content;
         this.updateTime = updateTime;
-        this.usersList = usersList;
-        this.categoryList = categoryList;
     }
 
     @Id
