@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -16,11 +17,13 @@ public class Order {
     @Id
     private Long orderId;
 
-    private String orderDate;
+    private LocalDateTime orderDate;
 
     private Long customerId;
 
-    private String totalAmount;
+    private Long productId;
+
+    private Integer totalAmount;
 
     private String shippingAddress;
 

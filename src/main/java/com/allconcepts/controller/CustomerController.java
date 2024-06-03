@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -34,15 +36,26 @@ public class CustomerController {
     public ResponseEntity<String> getCustomers() {
 
         JSONObject json = new JSONObject();
+        List<String> nameList = new LinkedList<>();
 
-        List<Customer> customerList = customerRepository.getCustomers();
-        List<String> nameList = customerList.stream()
+        Set<Customer> customerSet = customerRepository.getCustomers();
+        nameList = customerSet.stream()
                 .map(customer -> customer.getFirstName() + " " + customer.getLastName())
                 .peek(System.out::println)
                 .collect(Collectors.toList());
 
         System.out.println(nameList);
         json.put("names", nameList);
+
+        return new ResponseEntity<>(json.toString(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCustomer")
+    public ResponseEntity<String> getCustomer() {
+
+        JSONObject json = new JSONObject();
+        List<Customer> customer = customerRepository.getCustomer();
+        System.out.println(customer);
 
         return new ResponseEntity<>(json.toString(), HttpStatus.OK);
     }

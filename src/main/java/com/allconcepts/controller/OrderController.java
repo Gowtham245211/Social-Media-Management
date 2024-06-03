@@ -1,11 +1,9 @@
 package com.allconcepts.controller;
 
 import com.allconcepts.domain.Category;
-import com.allconcepts.domain.Product;
-import com.allconcepts.entity.Categories;
-import com.allconcepts.entity.Categories;
+import com.allconcepts.domain.Order;
 import com.allconcepts.repository.CategoryDao;
-import com.allconcepts.repository.CategoryRepository;
+import com.allconcepts.repository.OrderRepository;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,25 +13,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/order")
+public class OrderController {
 
     @Autowired
-    private CategoryDao categoryDao;
-    
-    @PostMapping("/addCategories")
-    public ResponseEntity<String> addCategories(@RequestBody List<Category> categoryList) {
+    private OrderRepository orderRepository;
+
+    @PostMapping("/addOrders")
+    public ResponseEntity<String> addOrders(@RequestBody List<Order> orderList) {
 
         JSONObject json = new JSONObject();
 
-        categoryList.stream()
-                .forEach(category -> categoryDao.createCategory(category));
-        
+        orderList.stream()
+                .forEach(order -> orderRepository.createOrder(order));
+
         /*List<Categories> categoryList = new LinkedList<>(Arrays.asList(
                 new Categories("Technology"),
                 new Categories("Art"),
